@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import api from '../api'; // Use the API instance
 import { useNavigate } from 'react-router-dom';
-import api from '../api'; // Import the configured axios instance
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -12,12 +12,12 @@ const Register = () => {
     const payload = { email, password };
     console.log('Register payload:', payload);
     try {
-      const response = await api.post('/api/businesses', payload); // Use api instance
+      const response = await api.post('/api/businesses', payload);
       console.log('Registration response:', response.data);
       alert('Account registered successfully. Please login.');
       navigate('/login');
     } catch (err) {
-      console.error('Registration failed:', err.response ? err.response.data : err);
+      console.error('Registration failed:', err.response?.data || err);
       alert(`Registration failed: ${err.response?.data?.message || 'Unknown error'}`);
     }
   };

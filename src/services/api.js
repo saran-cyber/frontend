@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL || 'https://backend-2-5m08.onrender.com' // Fallback for local testing
+  baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000', // Ensure backend URL is set correctly
+  withCredentials: true // Allow cookies (for authentication)
 });
 
 export default api;

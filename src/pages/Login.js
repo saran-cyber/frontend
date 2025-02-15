@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import api from '../api'; // Use the API instance
 import { useNavigate } from 'react-router-dom';
-import api from '../api'; // Import the configured axios instance
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,7 +10,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post('/api/auth/login', { email, password }); // Use api instance
+      const res = await api.post('/api/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
       alert('Logged in successfully.');
       navigate('/business-profile');
