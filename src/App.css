@@ -1,0 +1,223 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  color: #333;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container */
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Navbar Styles */
+.navbar {
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.navbar a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #f1f1f1;
+}
+
+/* Search Bar Styles */
+.search-bar {
+  width: 80%;
+  max-width: 500px;
+  margin: 20px auto;
+  position: relative;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.suggestions {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Business Card Styles */
+.business-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-out;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+}
+
+.business-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+.button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  transform: scale(1.03);
+}
+
+.button:disabled {
+  background-color: #ccc;
+}
+
+/* Form Styles */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+form div {
+  margin-bottom: 8px; /* Reduced space between form rows */
+  animation: fadeIn 0.3s ease-out;
+}
+
+form label {
+  display: block;
+  margin-bottom: 4px; /* Reduced space between label and input */
+  font-weight: 600;
+  text-align: center; /* Center labels */
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .navbar a {
+    margin: 5px 0;
+  }
+  
+  .search-bar {
+    width: 90%;
+  }
+  
+  .business-card {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 10px;
+  }
+  
+  .navbar {
+    padding: 10px 15px;
+  }
+  
+  .button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  
+  form label {
+    font-size: 14px;
+  }
+  
+  .search-bar input {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
