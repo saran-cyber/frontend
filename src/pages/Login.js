@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from '../api'; // Use the API instance
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -10,7 +10,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post('/api/auth/login', { email, password });
+      const res = await axios.post('/api/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
       alert('Logged in successfully.');
       navigate('/business-profile');
