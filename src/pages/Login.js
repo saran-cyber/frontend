@@ -1,6 +1,9 @@
+// frontend/src/pages/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
+const API_URL = process.env.REACT_APP_BACKEND_URL || "https://backend-2-5m08.onrender.com";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -9,20 +12,25 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload = { email, password };
+    console.log('Login payload:', payload);
+
     try {
-      const res = await axios.post('/api/auth/login', { email, password });
-      localStorage.setItem('token', res.data.token);
-      alert('Logged in successfully.');
-      navigate('/business-profile');
+      const response = await axios.post(`${API_URL}/api/auth/login`, payload, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+      console.log('Login response:', response.data);
+      alert('Login successful!');
+      navigate('/dashboard'); // Change to the correct page after login
     } catch (err) {
-      console.error('Login failed:', err.response?.data || err);
+      console.error('Login failed:', err.response ? err.response.data : err);
       alert(`Login failed: ${err.response?.data?.message || 'Unknown error'}`);
     }
   };
 
   return (
     <div className="container">
-      <h2>Business Login</h2>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>

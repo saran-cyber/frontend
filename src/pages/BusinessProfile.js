@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || "https://backend-2-5m08.onrender.com";
+
 const predefinedTypes = ['Hospital', 'Gym', 'Saloon', 'Spas', 'Car Wash'];
 
 const BusinessProfile = () => {
@@ -24,7 +26,7 @@ const BusinessProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get('/api/businesses/profile', {
+        const res = await axios.get(`${API_URL}/api/businesses/profile`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setProfile(res.data);
@@ -52,7 +54,7 @@ const BusinessProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`/api/businesses/${profile._id}`, profile, {
+      const res = await axios.put(`${API_URL}/api/businesses/${profile._id}`, profile, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert('Profile updated successfully.');

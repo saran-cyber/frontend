@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || "https://backend-2-5m08.onrender.com";
+
 const BusinessDetail = () => {
   const { type } = useParams();
   const [searchName, setSearchName] = useState('');
@@ -12,7 +14,7 @@ const BusinessDetail = () => {
   useEffect(() => {
     const fetchBusiness = async () => {
       try {
-        const response = await axios.get(`/api/businesses?type=${type}&search=${searchName}`);
+        const response = await axios.get(`${API_URL}/api/businesses?type=${type}&search=${searchName}`);
         if (response.data.length === 1) {
           setMatchedBusiness(response.data[0]);
         } else {
