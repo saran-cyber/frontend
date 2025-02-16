@@ -19,9 +19,11 @@ const Login = () => {
       const response = await axios.post(`${API_URL}/api/auth/login`, payload, {
         headers: { 'Content-Type': 'application/json' },
       });
+
       console.log('Login response:', response.data);
+      localStorage.setItem('token', response.data.token); // Store token in localStorage
       alert('Login successful!');
-      navigate('/dashboard'); // Change to the correct page after login
+      navigate('/business-profile'); // Redirect to Business Profile after login
     } catch (err) {
       console.error('Login failed:', err.response ? err.response.data : err);
       alert(`Login failed: ${err.response?.data?.message || 'Unknown error'}`);

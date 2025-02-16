@@ -1,3 +1,4 @@
+// frontend/src/pages/BusinessProfile.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -18,12 +19,13 @@ const BusinessProfile = () => {
   const [newSpecialist, setNewSpecialist] = useState({ name: '', specialization: '' });
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('token');
-  if (!token) {
-    navigate('/login');
-  }
-
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
     const fetchProfile = async () => {
       try {
         const res = await axios.get(`${API_URL}/api/businesses/profile`, {
@@ -34,8 +36,9 @@ const BusinessProfile = () => {
         console.error('Failed to fetch profile:', err.response?.data || err);
       }
     };
+
     fetchProfile();
-  }, [token]);
+  }, [navigate]);
 
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
@@ -53,9 +56,16 @@ const BusinessProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert("Unauthorized! Please log in again.");
+      navigate('/login');
+      return;
+    }
+
     try {
       const res = await axios.put(`${API_URL}/api/businesses/${profile._id}`, profile, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
       });
       alert('Profile updated successfully.');
       setProfile(res.data);
